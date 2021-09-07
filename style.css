@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+  background-color: #0091d4;
+  background-color: #7a7a7a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: whitesmoke;
+  padding: 1rem;
+}
+
+p {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+#myCanvas {
+	background: rgb(0, 0, 0);
+	display: block;
+	margin: 0 auto;
+	border-radius: 1px;
+  cursor: none;
+}
+
+.btn {
+  cursor: pointer;
+  border: 0;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.btn:focus {
+  outline: 0;
+}
+
+.btn:hover {
+  background: #222;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.rules-btn {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.rules {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #333;
+  color: #fff;
+  min-height: 100vh;
+  width: 300px;
+  padding: 20px;
+  line-height: 1.5;
+  transform: translateX(-400px);
+  transition: transform 0.5s ease-in-out;
+}
+
+.rules.show {
+  transform: translateX(0);
+}
+
+footer a {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 0.3rem 0.5rem;
+}
+
+footer a:visited {
+  color: white;
+}
+
+@media (max-width: 800px) {
+  #myCanvas {
+    width: 500px;
+    height: 340px;
+  }
+  h1 {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+}
+@media (max-width: 500px) {
+  #myCanvas {
+    width: 400px;
+    height: 270px;
+  }
+  h1 {
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  #myCanvas {
+    width: 350px;
+    height: 240px;
+  }
+  h1 {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}
+@media (max-width: 350px) {
+  #myCanvas {
+    width: 280px;
+    height: 190px;
+  }
+}
+@media (max-width: 280px) {
+  #myCanvas {
+    width: 225px;
+    height: 150px;
+  }
+  html {
+    font-size: 80%;
+  }
+}
+@media (max-width: 225px) {
+  #myCanvas {
+    width: 150px;
+    height: 100px;
+  }
+  html {
+    font-size: 70%;
+  }
+}
