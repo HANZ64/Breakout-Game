@@ -30,10 +30,10 @@ p {
 }
 
 #myCanvas {
-	background: rgb(0, 0, 0);
-	display: block;
-	margin: 0 auto;
-	border-radius: 1px;
+  background: rgb(0, 0, 0);
+  display: block;
+  margin: 0 auto;
+  border-radius: 1px;
   cursor: none;
 }
 
