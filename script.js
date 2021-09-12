@@ -5,8 +5,8 @@ const closeBtn = document.getElementById('close-btn');
 
 var x = canvas.width/2;
 var y = canvas.height - 30;
-var dx = 6;
-var dy = -6;
+var dx = 5;
+var dy = -5;
 var ballRadius = 9;
 var paddleHeight = 11;
 var paddleWidth = 93;
@@ -175,8 +175,8 @@ function draw() {
       } else {
         x = canvas.width/2;
         y = canvas.height-30;
-        dx = 6;
-        dy = -6;
+        dx = 5;
+        dy = -5;
         paddleX = (canvas.width-paddleWidth)/2;
       }
     }
