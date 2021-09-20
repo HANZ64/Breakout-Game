@@ -105,6 +105,7 @@ footer a:visited {
 /* Media Queries */
 @media (max-width: 1024px) {
   footer a {
+    font-size: 0.8rem;
     bottom: auto;
     top: 0;
   }
