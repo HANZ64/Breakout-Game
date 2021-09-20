@@ -76,6 +76,7 @@ p {
   line-height: 1.5;
   transform: translateX(-400px);
   transition: transform 0.5s ease-in-out;
+  z-index: 100;
 }
 
 .rules.show {
