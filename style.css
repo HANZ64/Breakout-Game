@@ -104,7 +104,12 @@ footer a:visited {
 /* Media Queries */
 @media (max-width: 1024px) {
   footer a {
+    bottom: auto;
     top: 0;
+  }
+
+  .rules-btn::after {
+    content: ' (not optimized for touch devices)';
   }
 }
 @media (max-width: 800px) {
