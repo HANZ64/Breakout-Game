@@ -96,6 +96,12 @@ footer a:visited {
   color: white;
 }
 
+/* Media Queries */
+@media (max-width: 1024px) {
+  footer a {
+    top: 0;
+  }
+}
 @media (max-width: 800px) {
   #myCanvas {
     width: 500px;
