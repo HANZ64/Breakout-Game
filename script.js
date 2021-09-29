@@ -1,29 +1,32 @@
-var canvas = document.getElementById('myCanvas');
-var ctx = canvas.getContext('2d');
+let canvas = document.getElementById('myCanvas');
+let ctx = canvas.getContext('2d');
 const rulesBtn = document.getElementById('rules-btn');
 const closeBtn = document.getElementById('close-btn');
 
-var x = canvas.width/2;
-var y = canvas.height - 30;
-var dx = 5;
-var dy = -5;
-var ballRadius = 9;
-var paddleHeight = 11;
-var paddleWidth = 93;
-var paddleX = (canvas.width-paddleWidth)/2;
-var rightPressed = false;
-var leftPressed = false;
-var brickRowCount = 5;
-var brickColumnCount = 8;
-var brickWidth = 75;
-var brickHeight = 20;
-var brickPadding = 10;
-var brickOffsetTop = 30;
-var brickOffsetLeft = 30;
-var score = 0;
-var lives = 3;
+let originalCanvasWidth = canvas.width;
+let currentCanvasWidth = canvas.getBoundingClientRect().width;
+let canvasWidthRatio = originalCanvasWidth / currentCanvasWidth;
+let x = canvas.width / 2;
+let y = canvas.height - 30;
+let dx = 5;
+let dy = -5;
+let ballRadius = 9;
+let paddleHeight = 11;
+let paddleWidth = 93;
+let paddleX = (canvas.width-paddleWidth) / 2;
+let rightPressed = false;
+let leftPressed = false;
+let brickRowCount = 5;
+let brickColumnCount = 8;
+let brickWidth = 75;
+let brickHeight = 20;
+let brickPadding = 10;
+let brickOffsetTop = 30;
+let brickOffsetLeft = 30;
+let score = 0;
+let lives = 3;
 
-var bricks = [];
+let bricks = [];
 for (c=0; c<brickColumnCount; c++) {
   bricks[c] = [];
   for (r=0; r<brickRowCount; r++) {
@@ -31,15 +34,12 @@ for (c=0; c<brickColumnCount; c++) {
   }
 }
 
-document.addEventListener("keydown", keyDownHandler);
-document.addEventListener("keyup", keyUpHandler);
-
 function drawBricks() {
   for(c=0; c<brickColumnCount; c++) {
     for(r=0; r<brickRowCount; r++) {
       if(bricks[c][r].status == 1) {
-        var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-        var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+        let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+        let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
         bricks[c][r].x = brickX;
         bricks[c][r].y = brickY;
         ctx.beginPath();
@@ -49,24 +49,6 @@ function drawBricks() {
         ctx.closePath();
       }
     }
-  }
-}
-
-function keyDownHandler(e) {
-  if(e.keyCode == 39) {
-    rightPressed = true;
-  }
-  else if(e.keyCode == 37) {
-    leftPressed = true;
-  }
-}
-
-function keyUpHandler(e) {
-  if(e.keyCode == 39) {
-    rightPressed = false;
-  }
-  else if(e.keyCode == 37) {
-    leftPressed = false;
   }
 }
 
@@ -89,7 +71,7 @@ function drawPaddle() {
 function collisionDetection() {
   for(c=0; c<brickColumnCount; c++){
     for(r=0; r<brickRowCount; r++){
-      var b = bricks[c][r];
+      let b = bricks[c][r];
       if(b.status == 1) {
         if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
           dy = -dy;
@@ -196,17 +178,64 @@ function draw() {
   y += dy;
   requestAnimationFrame(draw);
 }
+draw();
 
-document.addEventListener("mousemove", mouseMoveHandler);
+// Keyboard keys logic (left/right)
+function keyDownHandler(e) {
+  if(e.keyCode == 39) {
+    rightPressed = true;
+  }
+  else if(e.keyCode == 37) {
+    leftPressed = true;
+  }
+}
+function keyUpHandler(e) {
+  if(e.keyCode == 39) {
+    rightPressed = false;
+  }
+  else if(e.keyCode == 37) {
+    leftPressed = false;
+  }
+}
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
 
+// Mouse control logic
 function mouseMoveHandler(e) {
-  var relativeX = e.clientX - canvas.offsetLeft;
+  let relativeX = (e.clientX - canvas.offsetLeft) * canvasWidthRatio;
   if(relativeX > 0+paddleWidth/2 && relativeX < canvas.width-paddleWidth/2) {
     paddleX = relativeX - paddleWidth/2;
   }
 }
+document.addEventListener("mousemove", mouseMoveHandler);
 
-draw();
+// Touch device logic
+function touchMoveHandler(e) {
+  let relativeX = (e.touches[0].clientX - canvas.offsetLeft) * canvasWidthRatio;
+  if(relativeX > 0+paddleWidth/2 && relativeX < canvas.width-paddleWidth/2) {
+    paddleX = relativeX - paddleWidth/2;
+  }
+}
+document.addEventListener("touchmove", touchMoveHandler);
+
+// Reload page after canvas resize
+function setResizeHandler(callback, timeout) {
+  let timer_id = undefined;
+  window.addEventListener("resize", function() {
+      if(timer_id != undefined) {
+          clearTimeout(timer_id);
+          timer_id = undefined;
+      }
+      timer_id = setTimeout(function() {
+          timer_id = undefined;
+          callback();
+      }, timeout);
+  });
+}
+function callback() {
+  location.reload();
+}
+setResizeHandler(callback, 200);
 
 // Rules and close event handlers
 rulesBtn.addEventListener('click', () => rules.classList.add('show'));
