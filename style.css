@@ -131,6 +131,7 @@ footer a:visited {
   #myCanvas {
     width: 400px;
     height: 270px;
+    margin-bottom: 5rem;
   }
   h1 {
     font-size: 1.5rem;
