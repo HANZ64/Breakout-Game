@@ -77,6 +77,11 @@ function collisionDetection() {
           dy = -dy;
           b.status = 0;
           score++;
+          if(score > 1) {
+            dx = 5;
+            dy = -6;
+            dy = -dy;
+          }
           if(score > 5) {
             dx = 5;
             dy = -7;
@@ -104,12 +109,12 @@ function collisionDetection() {
           }
           if(score > 30) {
             dx = 6;
-            dy = -10;
+            dy = -11;
             dy = -dy;
           }
           if(score > 35) {
             dx = 7;
-            dy = -11;
+            dy = -13;
             dy = -dy;
             paddleWidth = 94;
           }
