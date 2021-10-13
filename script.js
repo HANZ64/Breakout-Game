@@ -77,7 +77,7 @@ function collisionDetection() {
           dy = -dy;
           b.status = 0;
           score++;
-          if(score > 1) {
+          if(score > 2) {
             dx = 5;
             dy = -6;
             dy = -dy;
